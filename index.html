@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سعيد ماجد النويصر | مطوّر ويب</title>
+<meta name="description" content="سعيد ماجد النويصر - مطوّر ويب Front-End. تصميم وتطوير مواقع احترافية ومتجاوبة باستخدام HTML وCSS وJavaScript وReact.">
+<meta name="theme-color" content="#0b1020">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020;
+  --bg2:#111833;
+  --card:#141c3a;
+  --line:rgba(255,255,255,.08);
+  --text:#e8ecff;
+  --muted:#9aa4c7;
+  --a1:#6c8cff;
+  --a2:#22d3b6;
+  --grad:linear-gradient(135deg,var(--a1),var(--a2));
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;background:#0b1020}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,92%);margin-inline:auto}
+section{padding:90px 0}
+.sec-title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:10px}
+.sec-sub{color:var(--muted);margin-bottom:44px;max-width:620px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* NAV */
+header{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(11,16,32,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:800;font-size:1.2rem}
+.logo span{color:var(--a2)}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:var(--muted);font-weight:600;font-size:.95rem;transition:.2s}
+.links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:999px;font-weight:700;font-family:inherit;font-size:1rem;border:0;cursor:pointer;transition:.25s}
+.btn-primary{background:var(--grad);color:#07101f}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(108,140,255,.35)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--a2);color:var(--a2)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.7rem;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:110px;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(110px);opacity:.28;z-index:0}
+.hero::before{width:420px;height:420px;background:var(--a1);top:-80px;right:-100px}
+.hero::after{width:360px;height:360px;background:var(--a2);bottom:-100px;left:-100px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center;position:relative;z-index:1}
+.badge{display:inline-block;padding:6px 16px;border:1px solid var(--line);border-radius:999px;color:var(--a2);font-weight:600;font-size:.9rem;margin-bottom:18px;background:rgba(34,211,182,.07)}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;line-height:1.25;margin-bottom:16px}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:520px;margin-bottom:30px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.avatar-wrap{display:flex;justify-content:center}
+.avatar{width:min(300px,70vw);aspect-ratio:1;border-radius:50%;background:var(--grad);padding:5px;animation:float 5s ease-in-out infinite}
+.avatar div{width:100%;height:100%;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-size:5.5rem;font-weight:800}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block;background:var(--bg2)}
+.stats{display:flex;gap:34px;margin-top:40px;flex-wrap:wrap}
+.stat b{display:block;font-size:1.7rem;font-weight:800}
+.stat span{color:var(--muted);font-size:.9rem}
+
+/* ABOUT */
+.about{background:var(--bg2)}
+.about-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.about p{color:var(--muted);margin-bottom:14px}
+.info-list{list-style:none;display:grid;gap:14px}
+.info-list li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;gap:10px}
+.info-list li span{color:var(--muted)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(108,140,255,.5)}
+.card h3{font-size:1.15rem;margin-bottom:14px}
+.card .ic{font-size:1.8rem;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:5px 14px;border-radius:999px;background:rgba(108,140,255,.12);color:#c9d4ff;font-size:.9rem;font-weight:600}
+.chip.learn{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.note{margin-top:22px;color:var(--muted);font-size:.9rem}
+
+/* SERVICES */
+.services{background:var(--bg2)}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.srv-grid .card p{color:var(--muted);font-size:.95rem}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.3s}
+.proj:hover{transform:translateY(-6px);border-color:rgba(34,211,182,.5)}
+.proj-img{height:190px;display:grid;place-items:center;font-size:3.4rem}
+.p1{background:linear-gradient(135deg,#1b2a55,#0f766e)}
+.p2{background:linear-gradient(135deg,#1c1c1c,#a16207)}
+.proj-body{padding:24px}
+.proj-body h3{margin-bottom:8px}
+.proj-body p{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.proj-body .chips{margin-bottom:18px}
+.tag{display:inline-block;font-size:.8rem;color:var(--a2);margin-bottom:8px;font-weight:700}
+
+/* CONTACT */
+.contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+.contact-info p{color:var(--muted);margin-bottom:22px}
+.wa{background:#25d366;color:#04210f}
+.wa:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,211,102,.3)}
+form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{font-weight:600;font-size:.92rem;display:block;margin-bottom:6px}
+input,textarea{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:1rem;transition:.2s}
+input:focus,textarea:focus{outline:none;border-color:var(--a1);box-shadow:0 0 0 3px rgba(108,140,255,.2)}
+textarea{min-height:140px;resize:vertical}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+#status{font-weight:600;min-height:26px}
+#status.ok{color:var(--a2)}
+#status.err{color:#ff7a7a}
+button[disabled]{opacity:.6;cursor:wait}
+
+footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid var(--line);font-size:.9rem}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(26px);transition:.7s}
+.js .reveal.show{opacity:1;transform:none}
+
+@media(max-width:820px){
+  section{padding:70px 0}
+  .hero-grid,.about-box,.contact-grid{grid-template-columns:1fr}
+  .avatar-wrap{order:-1}
+  .avatar{width:200px}
+  .avatar div{font-size:3.8rem}
+  .row2{grid-template-columns:1fr}
+  .burger{display:block}
+  .links{position:absolute;top:68px;inset-inline:0;background:var(--bg2);flex-direction:column;padding:20px;gap:18px;border-bottom:1px solid var(--line);display:none}
+  .links.open{display:flex}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">سعيد<span>.</span>dev</a>
+    <button class="burger" id="burger" aria-label="القائمة">☰</button>
+    <nav class="links" id="links">
+      <a href="#about">نبذة</a>
+      <a href="#skills">المهارات</a>
+      <a href="#services">الخدمات</a>
+      <a href="#projects">أعمالي</a>
+      <a href="#contact" class="btn btn-primary" style="color:#07101f;padding:8px 20px">تواصل معي</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">👋 أهلاً، أنا</span>
+      <h1>سعيد ماجد النويصر<br><span class="grad-text">مطوّر ويب Front-End</span></h1>
+      <p>بصمّم وبطوّر مواقع حديثة وسريعة ومتجاوبة مع كل الشاشات، بحيث يظهر عملك أو مشروعك بأفضل شكل على الإنترنت.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">ابدأ مشروعك معي</a>
+        <a href="#projects" class="btn btn-ghost">شاهد أعمالي</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>HTML · CSS · JS</b><span>الأساس القوي</span></div>
+        <div class="stat"><b>React</b><span>واجهات تفاعلية</span></div>
+        <div class="stat"><b>Responsive</b><span>يشتغل على كل الأجهزة</span></div>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar"><img src="./photo_2026-10-16_23-34-28.jpg" alt="صورة سعيد ماجد النويصر" width="480" height="480"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-box">
+    <div class="reveal">
+      <h2 class="sec-title">نبذة <span class="grad-text">عني</span></h2>
+      <p>أنا سعيد ماجد النويصر، مطوّر ويب مهتم ببناء واجهات مواقع نظيفة وسهلة الاستخدام. أدرس البرمجة وأطوّر مهاراتي باستمرار من خلال تنفيذ مشاريع عملية حقيقية.</p>
+      <p>بهتم بالتفاصيل: ألوان متناسقة، خطوط واضحة، وأداء سريع، وتصميم بيشتغل بنفس الجودة على الموبايل والكمبيوتر.</p>
+      <p>بحب التعلّم المستمر، وبقدر أسلّم شغلي بالوقت المتفق عليه وأتواصل معك بوضوح خلال العمل.</p>
+    </div>
+    <ul class="info-list reveal">
+      <li><span>الاسم</span><b>سعيد ماجد النويصر</b></li>
+      <li><span>التخصص</span><b>تطوير واجهات المواقع</b></li>
+      <li><span>اللغات</span><b>العربية (الأم) · الإنجليزية (أساسية)</b></li>
+      <li><span>التواصل</span><b>عبر النموذج أو واتساب</b></li>
+      <li><span>الحالة</span><b style="color:var(--a2)">● متاح لمشاريع جديدة</b></li>
+    </ul>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="sec-title reveal">مهاراتي <span class="grad-text">التقنية</span></h2>
+    <p class="sec-sub reveal">الأدوات والتقنيات اللي بشتغل فيها، وبعدها اللي عم أتعلمها حالياً.</p>
+    <div class="skills-grid">
+      <div class="card reveal">
+        <div class="ic">🧱</div><h3>أساسيات الويب</h3>
+        <div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span></div>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🎨</div><h3>التصميم والواجهات</h3>
+        <div class="chips"><span class="chip">Bootstrap</span><span class="chip">Responsive Design</span><span class="chip">Flexbox &amp; Grid</span></div>
+      </div>
+      <div class="card reveal">
+        <div class="ic">⚛️</div><h3>المكتبات</h3>
+        <div class="chips"><span class="chip">React</span></div>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🛠️</div><h3>أدوات العمل</h3>
+        <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">GitHub Pages</span><span class="chip">VS Code</span></div>
+      </div>
+      <div class="card reveal">
+        <div class="ic">📚</div><h3>عم أتعلم حالياً</h3>
+        <div class="chips"><span class="chip learn">TypeScript</span><span class="chip learn">Node.js</span><span class="chip learn">Python</span><span class="chip learn">Tailwind CSS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="sec-title reveal">شو <span class="grad-text">بقدر أقدملك</span></h2>
+    <p class="sec-sub reveal">خدمات عملية بتحتاجها لتحضّر مشروعك على الإنترنت.</p>
+    <div class="srv-grid">
+      <div class="card reveal"><div class="ic">🌐</div><h3>مواقع تعريفية</h3><p>موقع احترافي لشركتك أو مطعمك أو خدمتك، يعرّف الناس عليك ويزيد ثقتهم.</p></div>
+      <div class="card reveal"><div class="ic">🚀</div><h3>صفحات هبوط</h3><p>صفحة وحدة مركّزة لتسويق منتج أو خدمة وتحويل الزوار لعملاء.</p></div>
+      <div class="card reveal"><div class="ic">🖼️</div><h3>معارض أعمال</h3><p>موقع شخصي لعرض أعمالك، مناسب للمصورين والمصممين والمستقلين.</p></div>
+      <div class="card reveal"><div class="ic">📱</div><h3>تصميم متجاوب</h3><p>الموقع يظهر بشكل ممتاز على الموبايل والتابلت والكمبيوتر.</p></div>
+      <div class="card reveal"><div class="ic">✉️</div><h3>نماذج تواصل</h3><p>نموذج بيوصلك منه كل رسالة مباشرة على بريدك الإلكتروني.</p></div>
+      <div class="card reveal"><div class="ic">🔧</div><h3>تعديل وإصلاح</h3><p>تعديل مواقع موجودة، إصلاح أخطاء، وتحسين الشكل والسرعة.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="sec-title reveal">أعمالي <span class="grad-text">السابقة</span></h2>
+    <p class="sec-sub reveal">مشاريع شخصية نفّذتها لتطبيق مهاراتي.</p>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <div class="proj-img p1">🍽️</div>
+        <div class="proj-body">
+          <span class="tag">مشروع شخصي</span>
+          <h3>موقع مطعم مأكولات شامية</h3>
+          <p>موقع تعريفي لمطعم، فيه قائمة الطعام وصور الأطباق ومعلومات التواصل، بتصميم متجاوب.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span></div>
+          <a class="btn btn-ghost" href="https://sa4315178-hash.github.io/sadgg/" target="_blank" rel="noopener">عرض الموقع ↗</a>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img p2">📸</div>
+        <div class="proj-body">
+          <span class="tag">مشروع شخصي</span>
+          <h3>معرض أعمال مصور أطعمة</h3>
+          <p>موقع معرض أعمال بتصميم داكن عصري: معرض صور، آراء عملاء (نماذج تجريبية)، أسئلة شائعة ونموذج تواصل.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">Bootstrap</span><span class="chip">GitHub Pages</span></div>
+          <a class="btn btn-ghost" href="https://sa4315178-hash.github.io/sadgrx/" target="_blank" rel="noopener">عرض الموقع ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <h2 class="sec-title">لنتواصل <span class="grad-text">معاً</span></h2>
+      <p>عندك فكرة أو مشروع؟ ابعتلي رسالة من النموذج وبرد عليك بأقرب وقت، أو كلمني مباشرة على واتساب.</p>
+      <a class="btn wa" href="https://wa.me/963992798312?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D9%81%D8%AA%20%D9%85%D9%88%D9%82%D8%B9%D9%83%20%D9%88%D8%A8%D8%AF%D9%8A%20%D8%A3%D8%AD%D9%83%D9%8A%20%D9%85%D8%B9%D9%83%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9" target="_blank" rel="noopener">💬 تواصل عبر واتساب</a>
+    </div>
+    <form id="contactForm" class="reveal" novalidate>
+      <div class="row2">
+        <div><label for="name">الاسم *</label><input id="name" name="name" type="text" placeholder="اسمك الكامل" required></div>
+        <div><label for="email">البريد الإلكتروني *</label><input id="email" name="email" type="email" placeholder="example@mail.com" required dir="ltr"></div>
+      </div>
+      <div><label for="subject">الموضوع</label><input id="subject" name="subject" type="text" placeholder="مثلاً: طلب تصميم موقع"></div>
+      <div><label for="message">رسالتك *</label><textarea id="message" name="message" placeholder="اكتب تفاصيل مشروعك هنا..." required></textarea></div>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      <button class="btn btn-primary" type="submit" id="sendBtn">إرسال الرسالة</button>
+      <div id="status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> سعيد ماجد النويصر. جميع الحقوق محفوظة.</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+// ====== إعداد النموذج ======
+// 1) سجّل بحسابك على https://formspree.io  2) أنشئ Form جديد  3) انسخ الرابط والصقه هون
+const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+// قائمة الموبايل
+const burger = document.getElementById('burger');
+const links = document.getElementById('links');
+burger.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+// ظهور تدريجي
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show')),2500);
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// إرسال النموذج
+const form = document.getElementById('contactForm');
+const statusEl = document.getElementById('status');
+const btn = document.getElementById('sendBtn');
+
+function setStatus(msg, cls){ statusEl.textContent = msg; statusEl.className = cls || ''; }
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !email || !message) return setStatus('يرجى تعبئة الاسم والبريد والرسالة.', 'err');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus('يرجى إدخال بريد إلكتروني صحيح.', 'err');
+  if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) return setStatus('النموذج غير مفعّل بعد.', 'err');
+
+  btn.disabled = true; setStatus('جاري الإرسال...');
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if (res.ok) { form.reset(); setStatus('✅ وصلت رسالتك، شكراً لك! رح أرد عليك قريباً.', 'ok'); }
+    else { setStatus('صار خطأ بالإرسال، جرب مرة تانية أو تواصل عبر واتساب.', 'err'); }
+  } catch (err) {
+    setStatus('تعذّر الاتصال، تأكد من الإنترنت وجرب مرة تانية.', 'err');
+  } finally { btn.disabled = false; }
+});
+</script>
+</body>
+</html>
